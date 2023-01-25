@@ -3,6 +3,8 @@
     #traverse
     #insert at begining
     #insert at end
+    #insert inbetween
+    #remove
 
 #create linked list
 class HeadNode:
@@ -13,11 +15,17 @@ class HeadNode:
         self.head= None 
 
     def atBegining(self, node):
+        """
+            insert at the begining of the node
+        """
         new_head = node
         new_head.next = self.head
         self.head = new_head
     
     def atEnd(self ,node):
+        """
+            insert at the end of the node
+        """
         if self.head.next is None: # if immediate next in 1st node is empty
             self.head.next = node
         at_end = self.head
@@ -26,6 +34,9 @@ class HeadNode:
         at_end.next = node
 
     def inBetween(self, mid_node, new_node):
+        """
+            insert inbetween the node
+        """
         mid_traverse_data = self.head
         while mid_traverse_data.next is not None:
             if mid_traverse_data.data == mid_node:
@@ -34,7 +45,16 @@ class HeadNode:
                 mid_traverse_data.next.next = temp_next
             mid_traverse_data = mid_traverse_data.next
        
-
+    def removeNode(self, remove_node):
+        """
+            remove the node
+        """
+        remove_node_next = self.head
+        while remove_node_next.next is not None:
+            if remove_node_next.next.data == remove_node:
+                remove_node_next.next = remove_node_next.next.next #move the node in deleted next to prev node
+            remove_node_next = remove_node_next.next 
+            
     def display(self):
         nodes = []       
         traverse_data = self.head
@@ -64,4 +84,6 @@ print(initialize.display())
 initialize.atEnd(Node('Watermelon'))
 print(initialize.display())
 initialize.inBetween('Apple','Kiwi')
+print(initialize.display())
+initialize.removeNode('Grape')
 print(initialize.display())
