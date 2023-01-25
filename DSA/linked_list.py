@@ -25,6 +25,16 @@ class HeadNode:
             at_end = at_end.next
         at_end.next = node
 
+    def inBetween(self, mid_node, new_node):
+        mid_traverse_data = self.head
+        while mid_traverse_data.next is not None:
+            if mid_traverse_data.data == mid_node:
+                temp_next = mid_traverse_data.next 
+                mid_traverse_data.next = Node(new_node) #assing the new data in between desired fruit
+                mid_traverse_data.next.next = temp_next
+            mid_traverse_data = mid_traverse_data.next
+       
+
     def display(self):
         nodes = []       
         traverse_data = self.head
@@ -52,4 +62,6 @@ print(initialize.display())
 initialize.atBegining(Node('Pineapple'))
 print(initialize.display())
 initialize.atEnd(Node('Watermelon'))
+print(initialize.display())
+initialize.inBetween('Apple','Kiwi')
 print(initialize.display())
